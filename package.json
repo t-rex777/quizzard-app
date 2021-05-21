@@ -1,0 +1,24 @@
+{
+  "name": "quizzard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": "true",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "app": "yarn workspace @quizzard/app start",
+    "server": "yarn workspace @quizzard/api serve",
+    "build-app": "yarn workspace @quizzard/app build",
+    "build-server": "yarn workspace @quizzard/api build",
+    "start": "concurrently --kill-others-on-fail \"yarn app\"  \"yarn server\"",
+    "start:server": "yarn workspace @quizzard/api start"
+  },
+  "engines": {
+    "node": "14.15.0"
+  },
+  "dependencies": {
+    "concurrently": "^6.1.0"
+  }
+}

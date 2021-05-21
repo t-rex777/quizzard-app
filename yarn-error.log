@@ -1,0 +1,46 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\msahu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add concurrently -W
+
+PATH: 
+  C:\Users\msahu\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\cmd;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs;C:\Users\msahu\AppData\Roaming\npm;C:\Users\msahu\AppData\Local\Microsoft\WindowsApps;C:\Users\msahu\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\msahu\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EBUSY: resource busy or locked, copyfile 'C:\Users\msahu\AppData\Local\Yarn\Cache\v6\npm-imurmurhash-0.1.4-9218b9b2b928a238b13dc4fb6b6d576f231453ea-integrity\node_modules\imurmurhash\imurmurhash.js' -> 'C:\Users\msahu\OneDrive\Desktop\web dev class\quizzard\node_modules\imurmurhash\imurmurhash.js'
+
+npm manifest: 
+  {
+    "name": "quizzard",
+    "version": "1.0.0",
+    "main": "index.js",
+    "private":"true",
+    "license": "MIT",
+    "workspaces": [
+      "packages/*"
+    ],
+    "scripts": {
+      "app": "yarn workspace @quizzard/app start",
+      "server": "yarn workspace @quizzard/api serve",
+      "build-app": "yarn workspace @quizzard/app build",
+      "build-server": "yarn workspace @quizzard/api build",
+      "start": "concurrently --kill-others-on-fail \"yarn app\"  \"yarn server\"",
+      "start:server" : "yarn workspace @quizzard/api start"
+    },
+    "engines": {
+      "node": "14.15.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
