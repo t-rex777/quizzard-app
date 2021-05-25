@@ -17,7 +17,15 @@ exports.getUserById = async (req, res, next, userId) => {
 exports.getAllUsers = async (req, res) => {
   const users = await User.find();
   try {
-    res.json(users);
+    let finalUsers = [];
+    users.forEach((user) => {
+      const { _id, name, email, password, quizCompleted } = user;
+      finalUsers = [
+        ...finalUsers,
+        { _id, name, email, password, quizCompleted },
+      ];
+    });
+    res.json(finalUsers);
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -27,7 +35,9 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = (req, res) => {
   try {
-    res.json(req.user);
+    const user = req.user;
+    const { _id, name, email, password, quizCompleted } = user;
+    res.json({ _id, name, email, password, quizCompleted });
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -45,7 +55,7 @@ exports.createUser = async (req, res) => {
         password: "admin",
       },
     ]);
-    res.json(user)
+    res.json(user);
   } catch (error) {
     res.status(400).json({
       message: error.message,

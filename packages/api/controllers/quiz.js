@@ -15,9 +15,14 @@ exports.getQuizById = async (req, res, next, quizId) => {
 
 // read
 exports.getAllQuiz = async (req, res) => {
-  const quizzes = await Quiz.find();
+  let quizzes = await Quiz.find();
   try {
-    res.json(quizzes);
+    let finalQuiz = [];
+  quizzes.forEach(quiz=>{
+    const {_id,name,description,quizzes} = quiz;
+    finalQuiz = [...finalQuiz , {_id,name,description,quizzes}]
+  })
+    res.json(finalQuiz);
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -27,7 +32,9 @@ exports.getAllQuiz = async (req, res) => {
 
 exports.getQuiz = (req, res) => {
   try {
-    res.json(req.quiz);
+    const quiz = req.quiz;
+    const {_id,name,description,quizzes} = quiz;
+    res.json({_id,name,description,quizzes});
   } catch (error) {
     res.status(400).json({
       message: error.message,

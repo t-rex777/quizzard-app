@@ -1,0 +1,29 @@
+.banner {
+  height: 400px;
+  background-color: rgb(135, 211, 235);
+}
+.cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.homeCard__image {
+  width: 250px;
+  filter: brightness(50%);
+  transition: 300ms;
+}
+
+.homeCard__image:hover {
+  filter: brightness(100%);
+  transition: 300ms;
+  transform: scale(1.1);
+}
+
+.homeCard__title {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+}
