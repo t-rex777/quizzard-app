@@ -18,10 +18,14 @@ exports.getAllQuiz = async (req, res) => {
   let quizzes = await Quiz.find();
   try {
     let finalQuiz = [];
-  quizzes.forEach(quiz=>{
-    const {_id,name,description,quizzes} = quiz;
-    finalQuiz = [...finalQuiz , {_id,name,description,quizzes}]
-  })
+    quizzes.forEach((quiz) => {
+      const { _id, name, thumbnail, backgroundImage, description, quizzes } =
+        quiz;
+      finalQuiz = [
+        ...finalQuiz,
+        { _id, name, thumbnail, backgroundImage, description, quizzes },
+      ];
+    });
     res.json(finalQuiz);
   } catch (error) {
     res.status(400).json({
@@ -33,8 +37,9 @@ exports.getAllQuiz = async (req, res) => {
 exports.getQuiz = (req, res) => {
   try {
     const quiz = req.quiz;
-    const {_id,name,description,quizzes} = quiz;
-    res.json({_id,name,description,quizzes});
+    const { _id, name, thumbnail, backgroundImage, description, quizzes } =
+      quiz;
+    res.json({ _id, name, description, quizzes });
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -48,6 +53,10 @@ exports.createQuiz = async (req, res) => {
     const quiz = await Quiz.insertMany([
       {
         name: "Harry Potter",
+        thumbnail:
+          "https://api.time.com/wp-content/uploads/2014/07/301386_full1.jpg?quality=85&w=766&h=512&crop=1",
+        backgroundImage:
+          "https://images4.alphacoders.com/843/thumb-1920-84314.jpg",
         description:
           "If you consider yourself a Potterhead, check how much it's in your head!",
         quizzes: [

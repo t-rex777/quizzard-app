@@ -1,16 +1,28 @@
 import React, { useEffect } from "react";
-import { getAllQuizzes } from "./helper";
+import { useParams } from "react-router";
+import { getQuiz } from "./helper";
+import { useGame } from "./../../context/GameProvider";
+import QuizCard from "./QuizCard";
 
-interface Props {}
-
-const QuizPage: React.FC<Props> = () => {
+const QuizPage: React.FC = () => {
+  const { state: currentQuiz, dispatch } = useGame();
+  const { quizId } = useParams<{ quizId: string }>();
   useEffect(() => {
     (async () => {
-      const data = await getAllQuizzes();
-      console.log(data);
+      const quizData = await getQuiz(quizId);
+      dispatch({ type: "SET_CURRENT_QUIZ", payload: quizData });
     })();
   }, []);
-  return <div>Quiz Page</div>;
+console.log(currentQuiz)
+  return (
+    <div
+      className="quizPage"
+      // style={{ background: `url(${currentQuiz.)` }}
+    >
+      Hello
+      <QuizCard />
+    </div>
+  );
 };
 
 export default QuizPage;

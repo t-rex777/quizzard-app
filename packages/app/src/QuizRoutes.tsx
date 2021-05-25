@@ -10,7 +10,7 @@ const QuizRoutes: React.FC<Props> = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/quiz" exact component={QuizPage} />
+        <Route path="/quiz/:quizId" exact component={QuizPage} />
       </Switch>
     </BrowserRouter>
   );

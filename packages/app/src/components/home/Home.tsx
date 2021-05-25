@@ -1,43 +1,34 @@
 import React, { useEffect } from "react";
 import HomeCard from "./HomeCard";
 import { Link } from "react-router-dom";
-import "./home.css";
 import { getAllQuizzes } from "../Quiz/helper";
+import { useGame } from "./../../context/GameProvider";
+import "./home.css";
 
 const Home: React.FC = (props) => {
+  const { state, dispatch } = useGame();
   useEffect(() => {
     (async () => {
       const data = await getAllQuizzes();
       console.log(data);
+      dispatch({ type: "SET_QUIZZES", payload: data });
     })();
   }, []);
+  
+  console.log(state);
   return (
     <div>
       <div className="banner"></div>
       <div className="cards">
-        <Link to="/quiz/harrypotter">
-          <HomeCard
-            title="Harry Potter"
-            description="wizardy"
-            image="https://api.time.com/wp-content/uploads/2014/07/301386_full1.jpg?quality=85&w=766&h=512&crop=1"
-          />
-        </Link>
-
-        <HomeCard
-          title="Harry Potter"
-          description="wizardy"
-          image="https://api.time.com/wp-content/uploads/2014/07/301386_full1.jpg?quality=85&w=766&h=512&crop=1"
-        />
-        <HomeCard
-          title="Harry Potter"
-          description="wizardy"
-          image="https://api.time.com/wp-content/uploads/2014/07/301386_full1.jpg?quality=85&w=766&h=512&crop=1"
-        />
-        <HomeCard
-          title="Harry Potter"
-          description="wizardy"
-          image="https://api.time.com/wp-content/uploads/2014/07/301386_full1.jpg?quality=85&w=766&h=512&crop=1"
-        />
+        {state.quizzes.map((quiz) => (
+          <Link to={`/quiz/${quiz._id}`} key={quiz._id}>
+            <HomeCard
+              title={quiz.name}
+              description={quiz.description}
+              thumbnail={quiz.thumbnail}
+            />
+          </Link>
+        ))}
       </div>
     </div>
   );
