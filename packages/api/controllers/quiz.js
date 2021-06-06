@@ -39,7 +39,7 @@ exports.getQuiz = (req, res) => {
     const quiz = req.quiz;
     const { _id, name, thumbnail, backgroundImage, description, quizzes } =
       quiz;
-    res.json({ _id, name, description, quizzes });
+    res.json({ _id, name, thumbnail, backgroundImage, description, quizzes });
   } catch (error) {
     res.status(400).json({
       message: error.message,

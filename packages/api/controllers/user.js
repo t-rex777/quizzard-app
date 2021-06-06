@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 //middleware
 exports.getUserById = async (req, res, next, userId) => {
@@ -6,6 +7,27 @@ exports.getUserById = async (req, res, next, userId) => {
   try {
     req.user = user;
     next();
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+exports.authenticateToken = (req, res, next) => {
+  try {
+    if (
+      !req.headers["authorization"] &&
+      typeof req.headers["authorization"] !== "string"
+    ) {
+      return res.status(400).json({
+        message: "no token found",
+      });
+    }
+    const accessToken = req.headers["authorization"].split(" ")[1];
+    const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+    req.userId = user._id;
+    return next();
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -33,9 +55,9 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.getUser = (req, res) => {
+exports.getUser = async(req, res) => {
   try {
-    const user = req.user;
+    const user = await User.findById(req.userId);
     const { _id, name, email, password, quizCompleted } = user;
     res.json({ _id, name, email, password, quizCompleted });
   } catch (error) {
@@ -59,6 +81,90 @@ exports.createUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: error.message,
+    });
+  }
+};
+
+exports.signup = async (req, res) => {
+  try {
+    const user = new User(req.body);
+    const savedUser = await user.save();
+    if (savedUser === undefined) {
+      return res.json({
+        message: "user does not saved! please try again!",
+      });
+    }
+    res.json({ user });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+exports.signin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+    if (user === undefined) {
+      return res.status(404).json({
+        message: "no user found!",
+      });
+    } else {
+      if (user.securePassword(password) !== user.encrypted_password) {
+        return res.status(401).json({
+          message: "password does not match! check again!",
+        });
+      }
+      const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "15m",
+      });
+      const refreshToken = jwt.sign(
+        { userId: user._id },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          expiresIn: "7d",
+        }
+      );
+      res.json({ user, accessToken, refreshToken });
+    }
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+exports.createNewTokens = (req, res) => {
+  if (
+    !req.headers["refresh-token"] &&
+    typeof req.headers["refresh-token"] !== "string"
+  ) {
+    return res.status(401).json({
+      message: "No refresh tokens found",
+    });
+  }
+
+  try {
+    const oldRefreshToken = req.headers["refresh-token"].split(" ")[1];
+    const { userId } = jwt.verify(
+      oldRefreshToken,
+      process.env.REFRESH_TOKEN_SECRET
+    );
+    const refreshToken = jwt.sign(
+      { userId: userId },
+      process.env.REFRESH_TOKEN_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
+    const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "15m",
+    });
+    res.json({ accessToken, refreshToken });
+  } catch (error) {
+    res.status(401).json({
+      message: "refresh token cannot be verified! please check it again.",
     });
   }
 };

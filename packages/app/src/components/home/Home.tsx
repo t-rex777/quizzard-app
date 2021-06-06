@@ -7,18 +7,12 @@ import "./home.css";
 
 const Home: React.FC = (props) => {
   const { state, dispatch } = useGame();
-  useEffect(() => {
-    (async () => {
-      const data = await getAllQuizzes();
-      console.log(data);
-      dispatch({ type: "SET_QUIZZES", payload: data });
-    })();
-  }, []);
+  
   
   console.log(state);
   return (
     <div>
-      <div className="banner"></div>
+      {/* <div className="banner"></div> */}
       <div className="cards">
         {state.quizzes.map((quiz) => (
           <Link to={`/quiz/${quiz._id}`} key={quiz._id}>
