@@ -1,19 +1,8 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const { extend } = require("lodash");
 
 //middleware
-exports.getUserById = async (req, res, next, userId) => {
-  const user = await User.findById(userId);
-  try {
-    req.user = user;
-    next();
-  } catch (error) {
-    res.status(400).json({
-      message: error.message,
-    });
-  }
-};
-
 exports.authenticateToken = (req, res, next) => {
   try {
     if (
@@ -36,26 +25,8 @@ exports.authenticateToken = (req, res, next) => {
 };
 
 //read
-exports.getAllUsers = async (req, res) => {
-  const users = await User.find();
-  try {
-    let finalUsers = [];
-    users.forEach((user) => {
-      const { _id, name, email, password, quizCompleted } = user;
-      finalUsers = [
-        ...finalUsers,
-        { _id, name, email, password, quizCompleted },
-      ];
-    });
-    res.json(finalUsers);
-  } catch (error) {
-    res.status(400).json({
-      message: error.message,
-    });
-  }
-};
 
-exports.getUser = async(req, res) => {
+exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
     const { _id, name, email, password, quizCompleted } = user;
@@ -165,6 +136,26 @@ exports.createNewTokens = (req, res) => {
   } catch (error) {
     res.status(401).json({
       message: "refresh token cannot be verified! please check it again.",
+    });
+  }
+};
+
+// update
+exports.updateUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    let updatedUser = req.body;
+    updatedUser = extend(user, updatedUser);
+    const savedUser = await updatedUser.save();
+    if (savedUser === undefined) {
+      return res.status(400).json({
+        message: "user did not updated!",
+      });
+    }
+    res.json(savedUser);
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
     });
   }
 };

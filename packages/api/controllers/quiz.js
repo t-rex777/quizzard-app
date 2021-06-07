@@ -1,4 +1,5 @@
 const Quiz = require("../models/quiz");
+const User = require("../models/user");
 
 // middleware
 exports.getQuizById = async (req, res, next, quizId) => {
