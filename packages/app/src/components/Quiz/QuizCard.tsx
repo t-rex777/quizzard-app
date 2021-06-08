@@ -2,13 +2,14 @@ import React from "react";
 import { useGame } from "./../../context/GameProvider";
 
 const QuizCard: React.FC = () => {
-  const {state: { currentQuiz }} = useGame();
-  console.log(currentQuiz);
+  const {
+    state: { currentQuiz },
+  } = useGame();
   return (
     <div className="quizCard">
-      {
-        currentQuiz.quizzes.map((quiz: any) => (
-          <div key={quiz._id}>
+      {currentQuiz._id !== undefined &&
+        currentQuiz.quizzes.map((quiz: any,index : string) => (
+          <div key={index}>
             <h1>{quiz.question}</h1>
           </div>
         ))}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getAllQuizzes } from "../Quiz/helper";
 import { useGame } from "../../context/GameProvider";
 import "./home.css";
+import Base from './../Base/Base';
 
 const Home: React.FC = (props) => {
   const { state, dispatch } = useGame();
@@ -11,7 +12,7 @@ const Home: React.FC = (props) => {
   
   console.log(state);
   return (
-    <div>
+    <Base className = "">
       {/* <div className="banner"></div> */}
       <div className="cards">
         {state.quizzes.map((quiz) => (
@@ -24,7 +25,7 @@ const Home: React.FC = (props) => {
           </Link>
         ))}
       </div>
-    </div>
+    </Base>
   );
 };
 

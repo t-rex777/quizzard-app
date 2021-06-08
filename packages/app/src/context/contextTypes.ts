@@ -3,6 +3,7 @@ export type GameState = {
   currentQuiz : any ;
   quizzes: Quiz[];
   scores: number[];
+  loading : boolean;
 };
 
 export type Question = {

@@ -7,6 +7,8 @@ export const gameReducer = (state: GameState, action: ActionType) => {
       return { ...state, quizzes: action.payload };
     case "SET_CURRENT_QUIZ":
       return { ...state, currentQuiz: action.payload };
+    case "LOADING":
+      return { ...state, loading: action.payload };
     default:
       return state;
   }

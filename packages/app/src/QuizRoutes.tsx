@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./components/home/Home";
+import Home from "./components/Home/Home";
 import QuizPage from "./components/Quiz/QuizPage";
 import Signin from './components/User/Signin';
 
 interface Props {}
 
 const QuizRoutes: React.FC<Props> = () => {
-  return (
+  return (<>
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
@@ -15,6 +15,7 @@ const QuizRoutes: React.FC<Props> = () => {
         <Route path="/signin" exact component={Signin} />
       </Switch>
     </BrowserRouter>
+    </>
   );
 };
 
