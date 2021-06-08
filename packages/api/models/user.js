@@ -7,12 +7,14 @@ const userSchema = new mongoose.Schema(
     name: String,
     email: String,
     encrypted_password: String,
-    score: Number,
     salt: String,
     quizCompleted: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Quiz",
+      {  _id: false,
+        score: Number,
+        quiz: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Quiz",
+        },
       },
     ],
   },

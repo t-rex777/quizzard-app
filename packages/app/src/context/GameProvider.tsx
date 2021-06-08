@@ -7,7 +7,7 @@ import { gameReducer } from "../reducers/GameReducer";
 import { getAllQuizzes } from "../components/Quiz/helper";
 
 const initialGameState: GameState = {
-  users: [],
+  players: [],
   currentQuiz:{},
   quizzes: [],
   scores: [],

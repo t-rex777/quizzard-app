@@ -29,8 +29,8 @@ exports.authenticateToken = (req, res, next) => {
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
-    const { _id, name, email, password, quizCompleted } = user;
-    res.json({ _id, name, email, password, quizCompleted });
+    const { _id, name, email, quizCompleted } = user;
+    res.json({ _id, name, email, quizCompleted });
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -97,7 +97,9 @@ exports.signin = async (req, res) => {
           expiresIn: "7d",
         }
       );
-      res.json({ user, accessToken, refreshToken });
+      const { _id, email, name, score, quizCompleted } = user;
+      const userData = {_id, email, name, score, quizCompleted}
+      res.json({ userData, accessToken, refreshToken });
     }
   } catch (error) {
     res.status(400).json({
