@@ -12,7 +12,12 @@ const Base: React.FC<Props> = (props) => {
   return (
     <>
       {state.loading === false ? (
-        <div className={props.className}>{props.children}</div>
+        <div
+          className={props.className}
+          style={{ background: `url(${state.currentQuiz.backgroundImage})` }}
+        >
+          {props.children}
+        </div>
       ) : (
         <LoadingPage />
       )}

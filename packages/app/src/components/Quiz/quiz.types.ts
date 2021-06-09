@@ -11,5 +11,6 @@ export type QuizCardProps = {
   questionNr: number;
   userAnswers?: UserAnswers | null;
   totalQuestions:number;
+  score : number;
   callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { QuizCardProps } from "./quiz.types";
+import "./quiz.css";
 
 const QuizCard: React.FC<QuizCardProps> = (props: QuizCardProps) => {
   const {
@@ -7,24 +8,35 @@ const QuizCard: React.FC<QuizCardProps> = (props: QuizCardProps) => {
     questionNr,
     options,
     userAnswers,
+    score,
     callback,
     totalQuestions,
   } = props;
-
-
-
+  console.log(userAnswers);
   return (
     <div className="quizCard">
-      <p>
-        Question : {questionNr + 1}/{totalQuestions}
-      </p>
-      <h1>Questiom : {question}</h1>
+      <div className="quizCard-info">
+        <p className="text-muted text-xs">
+          Question : {questionNr + 1}/{totalQuestions}
+        </p>
+        <p className="text-muted text-xs">Score : {score}</p>
+      </div>
+
+      <h1 className="text-success text-s">Question : {question}</h1>
       {options.map((option) => (
         <button
+          className="option-btn"
+          style={
+            userAnswers?.correctAnswer === option
+              ? { backgroundColor: "#66daaf" }
+              : userAnswers?.answer === option
+              ? { backgroundColor: "#e44848" }
+              : { backgroundColor: "#fff" }
+          }
           value={option}
           key={option}
           onClick={callback}
-          disabled={userAnswers ?true:false}
+          disabled={userAnswers ? true : false}
         >
           {option}
         </button>

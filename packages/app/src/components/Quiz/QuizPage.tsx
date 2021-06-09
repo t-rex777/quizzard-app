@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
+import Base from "./../Base/Base";
+import QuizCard from "./QuizCard";
+import LoadingPage from "../LoadingPage/LoadingPage";
 import { useParams } from "react-router";
 import { getQuiz } from "./helper";
 import { useGame } from "./../../context/GameProvider";
-import QuizCard from "./QuizCard";
-import Base from "./../Base/Base";
-import { UserAnswers } from "./quiz.types";
-import LoadingPage from "../LoadingPage/LoadingPage";
-import "./quiz.css";
 import { Link } from "react-router-dom";
+import { UserAnswers } from "./quiz.types";
+import "./quiz.css";
 
 const QuizPage: React.FC = () => {
   const { state, dispatch } = useGame();
@@ -55,8 +55,8 @@ const QuizPage: React.FC = () => {
     }
   };
 
-  const checkAnswer = (e: any) => {
-    const answer = e.target.value;
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const answer = e.currentTarget.value;
     if (!gameOver) {
       const isCorrect = answer === quizzes[questionNr].correctAnswer;
       const answerObject = {
@@ -74,7 +74,7 @@ const QuizPage: React.FC = () => {
 
   return (
     <Base className="quizPage">
-      score{score}
+      <h1 className="quizpage-header">{state.currentQuiz.name} Trivia</h1>
       {quizzes !== undefined ? (
         <>
           {!gameOver && (
@@ -84,20 +84,21 @@ const QuizPage: React.FC = () => {
               userAnswers={userAnswers ? userAnswers[questionNr] : undefined}
               questionNr={questionNr}
               callback={checkAnswer}
+              score={score}
               totalQuestions={TOTAL_QUESTIONS}
             />
           )}
           {!gameOver &&
             questionNr + 1 === userAnswers.length &&
             questionNr !== TOTAL_QUESTIONS - 1 && (
-              <button onClick={nextQuestion}>Next Question</button>
+              <button onClick={nextQuestion} className="interact-btn">Next Question</button>
             )}
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-            <button onClick={startQuiz}>Start</button>
+            <button onClick={startQuiz} className="interact-btn">Start</button>
           ) : null}
           {userAnswers.length === TOTAL_QUESTIONS && (
             <Link to="/">
-              <button>Home</button>
+              <button className="interact-btn">Home</button>
             </Link>
           )}
         </>
