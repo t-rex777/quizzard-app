@@ -98,7 +98,7 @@ exports.createQuiz = async (req, res) => {
           },
           {
             question: "What does Ron see in the Mirror of Erised? ",
-            answer: [
+            options: [
               "His grinning face",
               "Into his future",
               "Himself holding the Quidditch Cup",
@@ -108,12 +108,12 @@ exports.createQuiz = async (req, res) => {
           },
           {
             question: "How many siblings Sirius Black had?",
-            answer: ["2", "4", "6", "5"],
+            options: ["2", "4", "6", "5"],
             correctAnswer: "4",
           },
           {
             question: "Who was not one of the creator of The Marauder's Map",
-            answer: [
+            options: [
               "Remus Lupin",
               "Peter Pettigrew",
               "Padfoot",
@@ -123,7 +123,7 @@ exports.createQuiz = async (req, res) => {
           },
           {
             question: "Who was the founder of house Slytherin",
-            answer: ["Godric", "Rowena", "Sypherus", "Salazar"],
+            options: ["Godric", "Rowena", "Sypherus", "Salazar"],
             correctAnswer: "Salazar",
           },
         ],

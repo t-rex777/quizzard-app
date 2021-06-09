@@ -1,5 +1,5 @@
 export type GameState = {
-  players: Player[];
+  player: Player | null;
   currentQuiz : any ;
   quizzes: Quiz[];
   scores: number[];

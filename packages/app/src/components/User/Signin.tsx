@@ -24,13 +24,13 @@ const Signin: React.FC = () => {
 
   const submitForm = async (e: any) => {
     e.preventDefault();
-    if(user.password !== user.re_password){
-      return alert("Both passwords should be same!")
+    if (user.password !== user.re_password) {
+      return alert("Both passwords should be same!");
     }
     try {
       const res: signinResponse = await signin(user);
       const { userData, accessToken, refreshToken } = res;
-      dispatch({ type: "SET_USER", payload: userData });
+      dispatch({ type: "SET_PLAYER", payload: userData });
       setQuizzardHeader(accessToken);
       localStorage.setItem("_rtoken", refreshToken);
     } catch (error) {

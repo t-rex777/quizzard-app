@@ -1,18 +1,34 @@
 import React from "react";
-import { useGame } from "./../../context/GameProvider";
+import { QuizCardProps } from "./quiz.types";
 
-const QuizCard: React.FC = () => {
+const QuizCard: React.FC<QuizCardProps> = (props: QuizCardProps) => {
   const {
-    state: { currentQuiz },
-  } = useGame();
+    question,
+    questionNr,
+    options,
+    userAnswers,
+    callback,
+    totalQuestions,
+  } = props;
+
+
+
   return (
     <div className="quizCard">
-      {currentQuiz._id !== undefined &&
-        currentQuiz.quizzes.map((quiz: any,index : string) => (
-          <div key={index}>
-            <h1>{quiz.question}</h1>
-          </div>
-        ))}
+      <p>
+        Question : {questionNr + 1}/{totalQuestions}
+      </p>
+      <h1>Questiom : {question}</h1>
+      {options.map((option) => (
+        <button
+          value={option}
+          key={option}
+          onClick={callback}
+          disabled={userAnswers ?true:false}
+        >
+          {option}
+        </button>
+      ))}
     </div>
   );
 };

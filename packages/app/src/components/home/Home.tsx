@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import HomeCard from "./HomeCard";
 import { Link } from "react-router-dom";
-import { getAllQuizzes } from "../Quiz/helper";
 import { useGame } from "../../context/GameProvider";
 import "./home.css";
 import Base from './../Base/Base';
 
 const Home: React.FC = (props) => {
-  const { state, dispatch } = useGame();
-  
-  
-  console.log(state);
-  return (
+  const { state } = useGame();
+    return (
     <Base className = "">
       {/* <div className="banner"></div> */}
       <div className="cards">
