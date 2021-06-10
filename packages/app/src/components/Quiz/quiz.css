@@ -11,10 +11,14 @@
 }
 
 .quizpage-header {
+  font-size: 1.8rem;
   background-color: #34d399;
   padding: 0.25rem 1rem;
   border-radius: 10px;
   color: #000;
+  font-family: "Bungee", cursive;
+  line-height: 2rem;
+  text-align: center;
 }
 .interact-btn {
   margin-top: 1rem;
@@ -26,26 +30,27 @@
   border-radius: 5px;
   height: 50px;
   width: 200px;
+  cursor: pointer;
 }
 
 .quizCard {
   display: flex;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.822);
-  padding: 3rem;
+  padding: 2rem 3rem;
   border-radius: 10px;
 }
-
+.quizcard-ques{
+  font-size: 1.5rem;
+}
 .option-btn {
   cursor: pointer;
   margin: 10px;
-  padding: 0.5rem 0.25rem;
+  padding: 0.4rem;
   border: solid 1px black;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border-radius: 5px;
-}
-.option-btn:hover {
-  background-color: rgb(145, 197, 221);
+  
 }
 .option-btn:disabled {
   background-color: #fff;
@@ -54,9 +59,15 @@
 .quizCard-info {
   display: flex;
   justify-content: space-between;
+  margin-bottom: -1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 480px) {
+  .quizpage-header{
+    font-size: 1rem;
+  }
   .quizCard {
     padding: 2rem;
   }
