@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import QuizPage from "./components/Quiz/QuizPage";
 import Signin from './components/User/Signin';
+import PrivateRoute from './components/User/PrivateRoute';
 
 interface Props {}
 
@@ -11,7 +12,7 @@ const QuizRoutes: React.FC<Props> = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/quiz/:quizId" exact component={QuizPage} />
+        <PrivateRoute path="/quiz/:quizId" exact component={QuizPage} />
         <Route path="/signin" exact component={Signin} />
       </Switch>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const { extend } = require("lodash");
+const { extend, concat } = require("lodash");
 
 //middleware
 exports.authenticateToken = (req, res, next) => {
@@ -98,7 +98,7 @@ exports.signin = async (req, res) => {
         }
       );
       const { _id, email, name, score, quizCompleted } = user;
-      const userData = {_id, email, name, score, quizCompleted}
+      const userData = { _id, email, name, score, quizCompleted };
       res.json({ userData, accessToken, refreshToken });
     }
   } catch (error) {
@@ -145,9 +145,16 @@ exports.createNewTokens = (req, res) => {
 // update
 exports.updateUser = async (req, res) => {
   try {
-    const user = await User.findById(req.userId);
+    let user = await User.findById(req.userId);
     let updatedUser = req.body;
-    updatedUser = extend(user, updatedUser);
+    const quizId = updatedUser.quiz;
+    let filteredUser = user.quizCompleted.filter((data) =>
+       data.quiz != quizId
+    );
+    updatedUser = extend(user, {
+      quizCompleted: [updatedUser, ...filteredUser],
+    });
+
     const savedUser = await updatedUser.save();
     if (savedUser === undefined) {
       return res.status(400).json({

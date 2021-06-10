@@ -12,7 +12,6 @@ const QuizCard: React.FC<QuizCardProps> = (props: QuizCardProps) => {
     callback,
     totalQuestions,
   } = props;
-  console.log(userAnswers);
   return (
     <div className="quizCard">
       <div className="quizCard-info">

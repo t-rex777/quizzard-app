@@ -1,27 +1,34 @@
 import React from "react";
 import HomeCard from "./HomeCard";
-import { Link } from "react-router-dom";
 import { useGame } from "../../context/GameProvider";
 import "./home.css";
-import Base from './../Base/Base';
+import Nav from "./../Nav/Nav";
 
-const Home: React.FC = (props) => {
+const Home: React.FC = () => {
   const { state } = useGame();
-    return (
-    <Base className = "">
-      {/* <div className="banner"></div> */}
-      <div className="cards">
-        {state.quizzes.map((quiz) => (
-          <Link to={`/quiz/${quiz._id}`} key={quiz._id}>
-            <HomeCard
-              title={quiz.name}
-              description={quiz.description}
-              thumbnail={quiz.thumbnail}
-            />
-          </Link>
-        ))}
+  return (
+    <>
+      <Nav />
+      <div className="home">
+        <div className="banner">
+          <h1 className="banner_text">WELCOME TO QUIZZARD!</h1>
+        </div>
+        <div className="main">
+          <div className="cards">
+            {state.quizzes.map((quiz) => (
+              <HomeCard
+                key={quiz._id}
+                id={quiz._id}
+                title={quiz.name}
+                description={quiz.description}
+                thumbnail={quiz.thumbnail}
+              />
+            ))}
+          </div>
+          <div className="scores">hell0</div>
+        </div>
       </div>
-    </Base>
+    </>
   );
 };
 

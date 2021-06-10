@@ -8,6 +8,7 @@ import { useGame } from "./../../context/GameProvider";
 import { Link } from "react-router-dom";
 import { UserAnswers } from "./quiz.types";
 import "./quiz.css";
+import { updateUser } from "../User/helper";
 
 const QuizPage: React.FC = () => {
   const { state, dispatch } = useGame();
@@ -55,7 +56,7 @@ const QuizPage: React.FC = () => {
     }
   };
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const answer = e.currentTarget.value;
     if (!gameOver) {
       const isCorrect = answer === quizzes[questionNr].correctAnswer;
@@ -69,6 +70,20 @@ const QuizPage: React.FC = () => {
         return [...prevValue, answerObject];
       });
       setScore(isCorrect ? score + 1 : score);
+    }
+    if (questionNr + 1 === TOTAL_QUESTIONS) {
+      const updatedUSer = {
+        score: score,
+        quiz: quizId,
+      };
+      const userData = await updateUser(updatedUSer);
+      try {
+        if (userData !== undefined) {
+          dispatch({ type: "SET_PLAYER", payload: userData });
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -91,10 +106,14 @@ const QuizPage: React.FC = () => {
           {!gameOver &&
             questionNr + 1 === userAnswers.length &&
             questionNr !== TOTAL_QUESTIONS - 1 && (
-              <button onClick={nextQuestion} className="interact-btn">Next Question</button>
+              <button onClick={nextQuestion} className="interact-btn">
+                Next Question
+              </button>
             )}
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-            <button onClick={startQuiz} className="interact-btn">Start</button>
+            <button onClick={startQuiz} className="interact-btn">
+              Start
+            </button>
           ) : null}
           {userAnswers.length === TOTAL_QUESTIONS && (
             <Link to="/">

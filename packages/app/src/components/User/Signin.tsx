@@ -3,15 +3,17 @@ import { signinResponse, User } from "./userTypes";
 import { signin } from "./helper";
 import { useGame } from "./../../context/GameProvider";
 import { setQuizzardHeader } from "../../utils";
+import Nav from "./../Nav/Nav";
+import { Redirect } from "react-router";
 
 const Signin: React.FC = () => {
   const { dispatch } = useGame();
   const [user, setUser] = useState<User>({
     email: "admin@gmail.com",
-    password: "qwertyuiop",
-    re_password: "qwertyuiop",
+    password: "qwertyuiop@1234",
+    re_password: "qwertyuiop@1234",
   });
-
+  const [redirect, setRedirect] = useState<boolean>(false);
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setUser((prevValue) => {
@@ -33,12 +35,15 @@ const Signin: React.FC = () => {
       dispatch({ type: "SET_PLAYER", payload: userData });
       setQuizzardHeader(accessToken);
       localStorage.setItem("_rtoken", refreshToken);
+      setRedirect(true);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div>
+      {redirect && <Redirect to="/" />}
+      <Nav />
       <h1 className="text-center">Sign In</h1>
       <div className="content-center">
         <form className="form-validation" onSubmit={submitForm}>

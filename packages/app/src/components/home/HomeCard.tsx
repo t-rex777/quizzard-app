@@ -1,7 +1,9 @@
 import React from "react";
 import "./home.css";
+import { Link } from "react-router-dom";
 
 interface HomeCardProps {
+  id : string;
   title: string;
   description: string;
   thumbnail: string;
@@ -11,8 +13,17 @@ const HomeCard: React.FC<HomeCardProps> = (props) => {
   return (
     <>
       <div className="homeCard">
-        <img className="homeCard__image" src={props.thumbnail} alt="cardImage" />
-        <p className="homeCard__title">{props.title}</p>
+        <div className="homeCard__image">
+          <img src={props.thumbnail} alt="cardImage" />
+        </div>
+
+        <div className="homeCard__info">
+          <p className="homeCard__title">{props.title}</p>
+          <p className="homeCard__desc">{props.description}</p>
+          <Link to={`/quiz/${props.id}`} className="homeCard__btn" >
+            <button className="btn btn-dark">Play</button>
+          </Link>
+        </div>
       </div>
     </>
   );

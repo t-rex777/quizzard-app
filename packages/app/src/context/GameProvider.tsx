@@ -11,7 +11,7 @@ const initialGameState: GameState = {
   currentQuiz:{},
   quizzes: [],
   scores: [],
-  loading : false,
+  loading : false
 };
 export const GameContext = React.createContext<{
   state: GameState;
