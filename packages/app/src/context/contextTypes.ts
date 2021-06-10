@@ -1,9 +1,14 @@
 export type GameState = {
   player: Player | null;
-  currentQuiz : any ;
+  currentQuiz: any;
   quizzes: Quiz[];
-  scores: number[];
-  loading : boolean;
+  scores: Score[] | null;
+  loading: boolean;
+};
+
+export type Score = {
+  quiz: string;
+  score: number;
 };
 
 export type Question = {
@@ -26,5 +31,10 @@ export type Player = {
   name: string;
   email: string;
   password: string;
-  quizCompleted: Quiz[];
+  quizCompleted: any;
+};
+
+export type playerQuizCompleted = {
+  quiz: string;
+  score: number;
 };

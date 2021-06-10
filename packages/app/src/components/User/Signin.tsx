@@ -33,6 +33,7 @@ const Signin: React.FC = () => {
       const res: signinResponse = await signin(user);
       const { userData, accessToken, refreshToken } = res;
       dispatch({ type: "SET_PLAYER", payload: userData });
+      dispatch({ type: "SET_SCORE", payload: userData.quizCompleted });
       setQuizzardHeader(accessToken);
       localStorage.setItem("_rtoken", refreshToken);
       setRedirect(true);

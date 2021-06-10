@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Bungee+Shade&display=swap");
 
+.main {
+  display: flex;
+  justify-content: space-evenly;
+}
 .banner {
   height: 200px;
   /* margin-top: -1.5rem; */
@@ -34,6 +38,7 @@
 .homeCard__image {
   width: fit-content;
   justify-self: flex-start;
+  align-self: center;
 }
 .homeCard__image > img {
   width: 250px;
@@ -56,11 +61,7 @@
   font-size: 1rem;
   border-radius: 5px;
 }
-.main{
-  display: flex;
-  justify-content: space-between;
-}
-.scores{
+.scores {
   width: 200px;
   min-height: 100vh;
   background-color: #fff;
@@ -69,9 +70,23 @@
   padding: 1rem;
 }
 
-
+.scoreCard {
+  list-style-type: none;
+}
+.scoreCard__item{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-bottom: 2rem;
+  /* text-align: center; */
+  font-size: 1.5rem;
+}
 
 @media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column-reverse;
+  }
+  .scores {
+    width: 90%;
+  }
   .banner {
     height: 180px;
   }

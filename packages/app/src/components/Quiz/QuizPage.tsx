@@ -72,6 +72,16 @@ const QuizPage: React.FC = () => {
       setScore(isCorrect ? score + 1 : score);
     }
     if (questionNr + 1 === TOTAL_QUESTIONS) {
+
+
+      // dispatch({
+      //   type: "SET_SCORE",
+      //   payload: {
+      //     quizName: state.currentQuiz.name,
+      //     score,
+      //   },
+      // });
+
       const updatedUSer = {
         score: score,
         quiz: quizId,

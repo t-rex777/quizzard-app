@@ -3,6 +3,7 @@ import HomeCard from "./HomeCard";
 import { useGame } from "../../context/GameProvider";
 import "./home.css";
 import Nav from "./../Nav/Nav";
+import ScoreCard from "./ScoreCard";
 
 const Home: React.FC = () => {
   const { state } = useGame();
@@ -25,7 +26,11 @@ const Home: React.FC = () => {
               />
             ))}
           </div>
-          <div className="scores">hell0</div>
+          {localStorage.getItem("_rtoken") && (
+            <div className="scores">
+              <ScoreCard />
+            </div>
+          )}
         </div>
       </div>
     </>

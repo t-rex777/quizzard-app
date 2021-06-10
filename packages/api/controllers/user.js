@@ -131,7 +131,7 @@ exports.createNewTokens = (req, res) => {
         expiresIn: "7d",
       }
     );
-    const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+    const accessToken = jwt.sign({ userId: userId }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "15m",
     });
     res.json({ accessToken, refreshToken });

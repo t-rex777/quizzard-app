@@ -6,6 +6,7 @@ const {
   signup,
   signin,
   updateUser,
+  createNewTokens,
 } = require("../controllers/user");
 
 
@@ -15,7 +16,8 @@ router
 
 router
   .use(authenticateToken)
+  .get("/token/access",createNewTokens)
   .get("/user", getUser)
-  .post("/user/update", updateUser);
+  .post("/user/update", updateUser)
 
 module.exports = router;
