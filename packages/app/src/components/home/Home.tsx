@@ -2,7 +2,7 @@ import React from "react";
 import HomeCard from "./HomeCard";
 import { useGame } from "../../context/GameProvider";
 import "./home.css";
-import Nav from "./../Nav/Nav";
+import Nav from "../Nav/Nav";
 import ScoreCard from "./ScoreCard";
 
 const Home: React.FC = () => {

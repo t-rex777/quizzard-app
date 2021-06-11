@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { signinResponse, User } from "./userTypes";
+import { User } from "./userTypes";
 import { signup } from "./helper";
 import { useGame } from "../../context/GameProvider";
-import { setQuizzardHeader } from "../../utils";
 import { Redirect } from "react-router";
 import Nav from "../Nav/Nav";
 import "./user.css";
