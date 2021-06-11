@@ -72,16 +72,6 @@ const QuizPage: React.FC = () => {
       setScore(isCorrect ? score + 1 : score);
     }
     if (questionNr + 1 === TOTAL_QUESTIONS) {
-
-
-      // dispatch({
-      //   type: "SET_SCORE",
-      //   payload: {
-      //     quizName: state.currentQuiz.name,
-      //     score,
-      //   },
-      // });
-
       const updatedUSer = {
         score: score,
         quiz: quizId,
@@ -90,6 +80,7 @@ const QuizPage: React.FC = () => {
       try {
         if (userData !== undefined) {
           dispatch({ type: "SET_PLAYER", payload: userData });
+          dispatch({ type: "SET_SCORE", payload: userData.quizCompleted });
         }
       } catch (error) {
         console.log(error);

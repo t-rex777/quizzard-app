@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Bungee+Shade&display=swap");
-
 .main {
   display: flex;
   justify-content: space-evenly;
 }
 .banner {
   height: 200px;
-  /* margin-top: -1.5rem; */
   background: url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")
     center center no-repeat;
   background-size: cover;
@@ -28,11 +26,13 @@
 
 .homeCard {
   display: flex;
-  /* border: solid 1px black; */
-  border-radius: 10px;
   padding: 1rem;
   margin: 1rem;
-  background-color: #fff;
+  background-color: #000000;
+  color: #fff;
+  box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -webkit-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -moz-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
 }
 
 .homeCard__image {
@@ -57,35 +57,59 @@
 .homeCard__desc {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
-.btn-dark {
+.btn-primary {
   font-size: 1rem;
   border-radius: 5px;
 }
 .scores {
-  width: 200px;
-  min-height: 100vh;
-  background-color: #fff;
-  margin: 3rem 3rem 1rem 0;
-  border-radius: 10px;
+  width: fit-content;
+  background-color: #000000;
+  color: #fff;
+  height: min-content;
+  margin: 4rem 3rem 1rem 0;
   padding: 1rem;
+  box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -webkit-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -moz-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
 }
 
 .scoreCard {
   list-style-type: none;
+  padding-left: 0;
 }
-.scoreCard__item{
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.scoreCard__header {
+  background-image: linear-gradient(
+    90deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-size: 1.5rem;
+  font-family: "Bungee", cursive;
+  font-weight: 700;
+  text-align: center;
+}
+.scoreCard__item {
+  text-align: center;
   margin-bottom: 2rem;
-  /* text-align: center; */
   font-size: 1.5rem;
 }
 
 @media screen and (max-width: 768px) {
   .main {
     flex-direction: column-reverse;
+    justify-content: space-around;
   }
   .scores {
-    width: 90%;
+    align-self: center;
+    min-width: 200px;
+    text-align: center;
+    margin: 2rem 0 -1.5rem 0;
   }
   .banner {
     height: 180px;
@@ -119,5 +143,14 @@
   }
   .btn-dark {
     align-self: center;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .banner {
+    height: 100px;
+  }
+  .banner_text {
+    font-size: 1.4rem;
   }
 }

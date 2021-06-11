@@ -21,7 +21,7 @@ const HomeCard: React.FC<HomeCardProps> = (props) => {
           <p className="homeCard__title">{props.title}</p>
           <p className="homeCard__desc">{props.description}</p>
           <Link to={`/quiz/${props.id}`} className="homeCard__btn" >
-            <button className="btn btn-dark">Play</button>
+            <button className="btn btn-primary">Play</button>
           </Link>
         </div>
       </div>

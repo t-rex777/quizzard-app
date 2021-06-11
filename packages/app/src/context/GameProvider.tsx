@@ -45,18 +45,17 @@ export const GameProvider: React.FC = ({ children }) => {
               "refresh-token": `Bearer ${rToken}`,
             },
           });
-          const { accessToken, refreshToken } = newAccessTokenRequest.data; // not working
+          const { accessToken, refreshToken } = newAccessTokenRequest.data;
           localStorage.setItem("_rtoken", refreshToken);
           setQuizzardHeader(accessToken);
           const userDetails = await quizzardAPI.get("/user");
           const user = userDetails.data;
+          console.log(user);
           dispatch({ type: "SET_PLAYER", payload: user });
           dispatch({ type: "SET_SCORE", payload: user.quizCompleted });
-
           dispatch({ type: "LOADING", payload: false });
         } catch (error) {
           console.log(error);
-          localStorage.removeItem("_rtoken");
           dispatch({ type: "LOG_OUT" });
         }
 

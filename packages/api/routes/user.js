@@ -9,15 +9,14 @@ const {
   createNewTokens,
 } = require("../controllers/user");
 
-
 router
+  .get("/token/access", createNewTokens)
   .post("/signup", signup)
   .post("/signin", signin);
 
 router
   .use(authenticateToken)
-  .get("/token/access",createNewTokens)
   .get("/user", getUser)
-  .post("/user/update", updateUser)
+  .post("/user/update", updateUser);
 
 module.exports = router;

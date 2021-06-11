@@ -26,11 +26,12 @@ const Home: React.FC = () => {
               />
             ))}
           </div>
-          {localStorage.getItem("_rtoken") && (
-            <div className="scores">
-              <ScoreCard />
-            </div>
-          )}
+          {localStorage.getItem("_rtoken") &&
+            typeof localStorage.getItem("_rtoken") === "string" && (
+              <div className="scores">
+                <ScoreCard />
+              </div>
+            )}
         </div>
       </div>
     </>

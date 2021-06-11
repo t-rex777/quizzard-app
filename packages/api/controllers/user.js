@@ -14,8 +14,8 @@ exports.authenticateToken = (req, res, next) => {
       });
     }
     const accessToken = req.headers["authorization"].split(" ")[1];
-    const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-    req.userId = user._id;
+    const { userId } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+    req.userId = userId;
     return next();
   } catch (error) {
     res.status(400).json({
@@ -87,9 +87,13 @@ exports.signin = async (req, res) => {
           message: "password does not match! check again!",
         });
       }
-      const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "15m",
-      });
+      const accessToken = jwt.sign(
+        { userId: user._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "15m",
+        }
+      );
       const refreshToken = jwt.sign(
         { userId: user._id },
         process.env.REFRESH_TOKEN_SECRET,
@@ -131,9 +135,13 @@ exports.createNewTokens = (req, res) => {
         expiresIn: "7d",
       }
     );
-    const accessToken = jwt.sign({ userId: userId }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "15m",
-    });
+    const accessToken = jwt.sign(
+      { userId: userId },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "15m",
+      }
+    );
     res.json({ accessToken, refreshToken });
   } catch (error) {
     res.status(401).json({
@@ -148,9 +156,7 @@ exports.updateUser = async (req, res) => {
     let user = await User.findById(req.userId);
     let updatedUser = req.body;
     const quizId = updatedUser.quiz;
-    let filteredUser = user.quizCompleted.filter((data) =>
-       data.quiz != quizId
-    );
+    let filteredUser = user.quizCompleted.filter((data) => data.quiz != quizId);
     updatedUser = extend(user, {
       quizCompleted: [updatedUser, ...filteredUser],
     });
