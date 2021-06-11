@@ -48,7 +48,7 @@ const Signin: React.FC = () => {
       {redirect && <Redirect to="/" />}
       <Nav />
       <h1 className="form__header">Sign In</h1>
-      <div className="content-center">
+      <div className="content-center" style={{flexDirection:"column", alignItems:"center"}}>
         <form className="form-validation" onSubmit={submitForm}>
           <div className="row">
             <label htmlFor="email">Email</label>
@@ -93,7 +93,7 @@ const Signin: React.FC = () => {
           </div>
         </form>
         <p className="signupLink">
-          Don't have account?{" "}
+          Don't have account?
           <Link
             to="/signup"
             style={{ textDecoration: "none", color: "#ff1e56" }}
