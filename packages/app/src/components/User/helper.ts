@@ -12,6 +12,17 @@ export const signin = async (user: User) => {
   }
 };
 
+export const signup = async (user: User) => {
+  try {
+    const response = await quizzardAPI.post("/signup", {
+      ...user,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const updateUser = async (userScore: UpdateUser) => {
   try {
     const response = await quizzardAPI.post("/user/update", {

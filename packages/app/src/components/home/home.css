@@ -51,11 +51,13 @@
 }
 .homeCard__title {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color :rgba(252, 70, 107, 1);
   font-size: 2rem;
   font-weight: 800;
 }
 .homeCard__desc {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: 400;
 }
 .btn-primary {
   font-size: 1rem;
@@ -111,7 +113,7 @@
     margin: 2rem 0 -1.5rem 0;
   }
   .banner {
-    height: 180px;
+    height: 130px;
   }
   .banner_text {
     font-size: 2rem;

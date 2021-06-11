@@ -27,7 +27,8 @@ const Home: React.FC = () => {
             ))}
           </div>
           {localStorage.getItem("_rtoken") &&
-            typeof localStorage.getItem("_rtoken") === "string" && (
+            typeof localStorage.getItem("_rtoken") === "string" &&
+            state.scores !== null && (
               <div className="scores">
                 <ScoreCard />
               </div>
