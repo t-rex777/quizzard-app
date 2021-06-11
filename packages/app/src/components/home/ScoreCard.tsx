@@ -14,16 +14,24 @@ const ScoreCard: React.FC<Props> = () => {
         {scores?.map((data) => {
           if (data.quiz === "60c1c2725895490c307a7e70") {
             return (
-              <li key={data.quiz} className="scoreCard__item">Harry Potter : {data.score}</li>
+              <li key={data.quiz} className="scoreCard__item">
+                Harry Potter : {data.score}
+              </li>
             );
           }
           if (data.quiz === "60c1c2725895490c307a7e71") {
             return (
-              <li key={data.quiz} className="scoreCard__item">F.R.I.E.N.D.S : {data.score}</li>
+              <li key={data.quiz} className="scoreCard__item">
+                F.R.I.E.N.D.S : {data.score}
+              </li>
             );
           }
           if (data.quiz === "60c1c2725895490c307a7e72") {
-            return <li key={data.quiz} className="scoreCard__item">Naruto : {data.score}</li>;
+            return (
+              <li key={data.quiz} className="scoreCard__item">
+                Naruto : {data.score}
+              </li>
+            );
           }
           if (data.quiz === "60c1c2725895490c307a7e73") {
             return (
@@ -32,7 +40,7 @@ const ScoreCard: React.FC<Props> = () => {
               </li>
             );
           }
-          return "" ;
+          return "";
         })}
       </ul>
     </div>

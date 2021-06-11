@@ -3,8 +3,9 @@ import { signinResponse, User } from "./userTypes";
 import { signin } from "./helper";
 import { useGame } from "./../../context/GameProvider";
 import { setQuizzardHeader } from "../../utils";
-import Nav from "./../Nav/Nav";
 import { Redirect } from "react-router";
+import Nav from "./../Nav/Nav";
+import "./user.css";
 
 const Signin: React.FC = () => {
   const { dispatch } = useGame();
@@ -45,17 +46,16 @@ const Signin: React.FC = () => {
     <div>
       {redirect && <Redirect to="/" />}
       <Nav />
-      <h1 className="text-center">Sign In</h1>
+      <h1 className="form__header">Sign In</h1>
       <div className="content-center">
         <form className="form-validation" onSubmit={submitForm}>
-          <div className="validation-message"></div>
           <div className="row">
             <label htmlFor="email">UserName</label>
             <input
               type="email"
               id="email"
               name="email"
-              className="form-username"
+              className="form__input"
               value={user.email}
               onChange={handleChange}
             />
@@ -67,7 +67,7 @@ const Signin: React.FC = () => {
               type="password"
               id="password"
               name="password"
-              className="form-password"
+              className="form__input"
               value={user.password}
               onChange={handleChange}
             />
@@ -79,15 +79,17 @@ const Signin: React.FC = () => {
               type="password"
               id="re_password"
               name="re_password"
-              className="form-rePassword"
+              className="form__input"
               value={user.re_password}
               onChange={handleChange}
             />
             <br />
           </div>
-          <button type="submit" className="form-btn">
-            Submit
-          </button>
+          <div className="button">
+            <button type="submit" className="form__btn">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>
