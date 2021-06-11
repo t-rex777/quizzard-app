@@ -6,12 +6,10 @@ const {
   getQuiz,
   createQuiz,
 } = require("../controllers/quiz");
-const { authenticateToken } = require("../controllers/user");
 
 router.param("quizId", getQuizById);
 
 router
-  // .use(authenticateToken)
   .get("/quizzes", getAllQuiz)
   .get("/quiz/:quizId", getQuiz)
   .post("/quiz/create", createQuiz);

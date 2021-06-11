@@ -1,1 +1,4 @@
-export const API = "http://localhost:4000/api";
+export const API =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:4000/api"
+    : process.env.REACT_APP_API;
