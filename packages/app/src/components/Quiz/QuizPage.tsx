@@ -69,11 +69,12 @@ const QuizPage: React.FC = () => {
       setUserAnswers((prevValue) => {
         return [...prevValue, answerObject];
       });
-      setScore(isCorrect ? score + 1 : score);
+      console.log({ score });
+      isCorrect ? setScore(score + 1) : setScore(score);
     }
     if (questionNr + 1 === TOTAL_QUESTIONS) {
       const updatedUSer = {
-        score: score,
+        score: score + 1,
         quiz: quizId,
       };
       const userData = await updateUser(updatedUSer);
