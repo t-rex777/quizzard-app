@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       <Nav />
       <div className="home">
         <div className="banner">
-          <h1 className="banner_text">WELCOME TO QUIZZARD!</h1>
+          <h1 className="banner__text">WELCOME TO QUIZZARD!</h1>
         </div>
         <div className="main">
           <div className="cards">

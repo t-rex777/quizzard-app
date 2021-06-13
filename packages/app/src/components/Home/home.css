@@ -5,14 +5,13 @@
 }
 .banner {
   height: 200px;
-  background: url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")
-    center center no-repeat;
+  background: url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.banner_text {
+.banner__text {
   color: #fff;
   font-size: 3rem;
   font-family: "Bungee Outline", cursive;
@@ -51,7 +50,7 @@
 }
 .homeCard__title {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color :rgba(252, 70, 107, 1);
+  color: rgba(252, 70, 107, 1);
   font-size: 2rem;
   font-weight: 800;
 }
@@ -115,7 +114,7 @@
   .banner {
     height: 130px;
   }
-  .banner_text {
+  .banner__text {
     font-size: 2rem;
   }
 }
@@ -123,7 +122,7 @@
   .banner {
     height: 150px;
   }
-  .banner_text {
+  .banner__text {
     font-size: 1.5rem;
     text-align: center;
   }
@@ -151,7 +150,7 @@
   .banner {
     height: 100px;
   }
-  .banner_text {
+  .banner__text {
     font-size: 1.4rem;
   }
 }

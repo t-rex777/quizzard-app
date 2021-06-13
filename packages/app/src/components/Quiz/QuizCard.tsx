@@ -14,17 +14,17 @@ const QuizCard: React.FC<QuizCardProps> = (props: QuizCardProps) => {
   } = props;
   return (
     <div className="quizCard">
-      <div className="quizCard-info">
+      <div className="quizCard__info">
         <p className="text-muted">
           Question : {questionNr + 1}/{totalQuestions}
         </p>
         <p className="text-muted ">Score : {score}</p>
       </div>
 
-      <h1 className="text-success quizcard-ques">Question : {question}</h1>
+      <h1 className="text-success quizpage__ques">Question : {question}</h1>
       {options.map((option) => (
         <button
-          className="option-btn"
+          className="quizpage__option__btn"
           style={
             userAnswers?.correctAnswer === option
               ? { backgroundColor: "#66daaf" }

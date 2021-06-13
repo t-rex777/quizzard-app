@@ -91,7 +91,7 @@ const QuizPage: React.FC = () => {
 
   return (
     <Base className="quizPage">
-      <h1 className="quizpage-header">{state.currentQuiz.name} Trivia</h1>
+      <h1 className="quizpage__header">{state.currentQuiz.name} Trivia</h1>
       {quizzes !== undefined ? (
         <>
           {!gameOver && (
@@ -108,18 +108,21 @@ const QuizPage: React.FC = () => {
           {!gameOver &&
             questionNr + 1 === userAnswers.length &&
             questionNr !== TOTAL_QUESTIONS - 1 && (
-              <button onClick={nextQuestion} className="interact-btn">
+              <button
+                onClick={nextQuestion}
+                className="quizpage__interact__btn"
+              >
                 Next Question
               </button>
             )}
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-            <button onClick={startQuiz} className="interact-btn">
+            <button onClick={startQuiz} className="quizpage__interact__btn">
               Start
             </button>
           ) : null}
           {userAnswers.length === TOTAL_QUESTIONS && (
             <Link to="/">
-              <button className="interact-btn">Home</button>
+              <button className="quizpage__interact__btn">Home</button>
             </Link>
           )}
         </>
