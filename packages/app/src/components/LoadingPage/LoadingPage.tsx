@@ -1,8 +1,11 @@
 import React from "react";
+import "./loading.css";
 
 const LoadingPage: React.FC = () => {
   return (
-    <div className="content-center mt-4 text-xl text-danger">Loading.....</div>
+    <div className="loadingPage">
+      <div className="loader"></div>
+    </div>
   );
 };
 

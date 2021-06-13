@@ -32,12 +32,15 @@ const Signin: React.FC = () => {
       return alert("Both passwords should be same!");
     }
     try {
+      dispatch({ type: "LOADING", payload: true });
       const res: signinResponse = await signin(user);
       const { userData, accessToken, refreshToken } = res;
       dispatch({ type: "SET_PLAYER", payload: userData });
       dispatch({ type: "SET_SCORE", payload: userData.quizCompleted });
       setQuizzardHeader(accessToken);
       localStorage.setItem("_rtoken", refreshToken);
+      dispatch({ type: "LOADING", payload: false });
+
       setRedirect(true);
     } catch (error) {
       console.log(error);
@@ -48,7 +51,10 @@ const Signin: React.FC = () => {
       {redirect && <Redirect to="/" />}
       <Nav />
       <h1 className="form__header">Sign In</h1>
-      <div className="content-center" style={{flexDirection:"column", alignItems:"center"}}>
+      <div
+        className="content-center"
+        style={{ flexDirection: "column", alignItems: "center" }}
+      >
         <form className="form-validation" onSubmit={submitForm}>
           <div className="row">
             <label htmlFor="email">Email</label>

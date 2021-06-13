@@ -4,6 +4,7 @@ import { useGame } from "../../context/GameProvider";
 import "./home.css";
 import Nav from "../Nav/Nav";
 import ScoreCard from "./ScoreCard";
+import LoadingPage from './../LoadingPage/LoadingPage';
 
 const Home: React.FC = () => {
   const { state } = useGame();
@@ -35,6 +36,7 @@ const Home: React.FC = () => {
             )}
         </div>
       </div>
+      {state.loading && <LoadingPage/>}
     </>
   );
 };

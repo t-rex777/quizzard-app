@@ -28,8 +28,16 @@ export const GameProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getAllQuizzes();
-      dispatch({ type: "SET_QUIZZES", payload: data });
+      try {
+        dispatch({ type: "LOADING", payload: true });
+        const data = await getAllQuizzes();
+        if (data !== undefined) {
+          dispatch({ type: "SET_QUIZZES", payload: data });
+          dispatch({ type: "LOADING", payload: false });
+        }
+      } catch (error) {
+        console.log(error);
+      }
     })();
 
     (async () => {
