@@ -5,6 +5,7 @@ import { useGame } from "../../context/GameProvider";
 import { Redirect } from "react-router";
 import Nav from "../Nav/Nav";
 import "./user.css";
+import { Link } from "react-router-dom";
 
 const SignupForm: React.FC = () => {
   const { dispatch } = useGame();
@@ -44,7 +45,10 @@ const SignupForm: React.FC = () => {
       {redirect && <Redirect to="/signin" />}
       <Nav />
       <h1 className="form__header">Sign Up</h1>
-      <div className="content-center">
+      <div
+        className="content-center"
+        style={{ flexDirection: "column", alignItems: "center" }}
+      >
         <form className="form-validation" onSubmit={submitForm}>
           <div className="row">
             <label htmlFor="name">Name</label>
@@ -100,6 +104,15 @@ const SignupForm: React.FC = () => {
             </button>
           </div>
         </form>
+        <p className="signupLink">
+          Already have an account?
+          <Link
+            to="/signin"
+            style={{ textDecoration: "none", color: "#ff1e56" }}
+          >
+            <> Sign In </>
+          </Link>
+        </p>
       </div>
     </div>
   );

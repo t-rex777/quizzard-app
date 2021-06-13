@@ -104,7 +104,7 @@ const Signin: React.FC = () => {
             to="/signup"
             style={{ textDecoration: "none", color: "#ff1e56" }}
           >
-            Register
+           <> Register </>
           </Link>
         </p>
       </div>
