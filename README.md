@@ -24,3 +24,4 @@ Live Link : https://quizzard-app.netlify.app/
 
 ## App Sceenshot
 ![Quizzard screenshot](https://res.cloudinary.com/june-social/image/upload/v1625678658/assests/quizzard-ss_paaxyl.png)
+
