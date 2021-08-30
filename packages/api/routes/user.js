@@ -1,16 +1,22 @@
-const {
-  getUserById,
-  getAllUsers,
-  getUser,
-  createUser,
-} = require("../controllers/user");
 const express = require("express");
 const router = express.Router();
+const {
+  authenticateToken,
+  getUser,
+  signup,
+  signin,
+  updateUser,
+  createNewTokens,
+} = require("../controllers/user");
 
-router.param("userId", getUserById);
+router
+  .get("/token/access", createNewTokens)
+  .post("/signup", signup)
+  .post("/signin", signin);
 
-router.get("/users", getAllUsers);
-router.get("/user/:userId", getUser);
-router.post("/user/create", createUser);
+router
+  .use(authenticateToken)
+  .get("/user", getUser)
+  .post("/user/update", updateUser);
 
 module.exports = router;

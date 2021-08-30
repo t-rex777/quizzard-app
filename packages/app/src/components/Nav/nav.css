@@ -1,0 +1,23 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background : #000;
+}
+
+.nav__item {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 1rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border-radius: 5px;
+  padding: 0rem 1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width:425px) {
+  nav{
+    padding :0;
+  }
+}

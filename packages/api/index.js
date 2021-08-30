@@ -31,6 +31,11 @@ app.get("/", (req, res) => {
   res.send("I am John Doe!!");
 });
 
+// // wrong route
+// app.get("*",(req,res)=>{
+//  res.status(500).send("invalid route! please check your route again!")
+// })
+
 // routes
 const quizRoutes = require("./routes/quiz");
 const userRoutes = require("./routes/user");

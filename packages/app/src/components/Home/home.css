@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Bungee+Shade&display=swap");
+.main {
+  display: flex;
+  justify-content: space-evenly;
+}
+.banner {
+  height: 200px;
+  background: url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner__text {
+  color: #fff;
+  font-size: 3rem;
+  font-family: "Bungee Outline", cursive;
+  font-weight: 900;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.homeCard {
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #000000;
+  color: #fff;
+  box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -webkit-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -moz-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+}
+
+.homeCard__image {
+  width: fit-content;
+  justify-self: flex-start;
+  align-self: center;
+}
+.homeCard__image > img {
+  width: 250px;
+  height: 180px;
+  border-radius: 10px;
+}
+
+.homeCard__info {
+  margin-left: 2rem;
+}
+.homeCard__title {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgba(252, 70, 107, 1);
+  font-size: 2rem;
+  font-weight: 800;
+}
+.homeCard__desc {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: 400;
+}
+.btn-primary {
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.scores {
+  width: fit-content;
+  background-color: #000000;
+  color: #fff;
+  height: min-content;
+  margin: 4rem 3rem 1rem 0;
+  padding: 1rem;
+  box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -webkit-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+  -moz-box-shadow: 11px 12px 5px 3px rgba(21, 18, 18, 0.75);
+}
+
+.scoreCard {
+  list-style-type: none;
+  padding-left: 0;
+}
+.scoreCard__header {
+  background-image: linear-gradient(
+    90deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-size: 1.5rem;
+  font-family: "Bungee", cursive;
+  text-align: center;
+}
+.scoreCard__item {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column-reverse;
+    justify-content: space-around;
+  }
+  .scores {
+    align-self: center;
+    min-width: 200px;
+    text-align: center;
+    margin: 2rem 0 -1.5rem 0;
+  }
+  .banner {
+    height: 130px;
+  }
+  .banner__text {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 625px) {
+  .banner {
+    height: 150px;
+  }
+  .banner__text {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .homeCard__btn {
+    display: flex;
+    justify-content: center;
+  }
+  .homeCard__info {
+    margin-left: 0;
+  }
+  .homeCard__title,
+  .homeCard__desc {
+    text-align: center;
+  }
+  .homeCard {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-dark {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .banner {
+    height: 100px;
+  }
+  .banner__text {
+    font-size: 1.4rem;
+  }
+}
